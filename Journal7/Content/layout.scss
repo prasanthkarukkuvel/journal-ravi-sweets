@@ -1,0 +1,411 @@
+@import "compass/css3";
+@import "compass/css3/transform";
+
+@mixin flexbox {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}
+
+@mixin flex($values) {
+	-webkit-box-flex: $values;
+	-moz-box-flex: $values;
+	-webkit-flex: $values;
+	-ms-flex: $values;
+	flex: $values;
+}
+
+@mixin order($val) {
+	-webkit-box-ordinal-group: $val;
+	-moz-box-ordinal-group: $val;
+	-ms-flex-order: $val;
+	-webkit-order: $val;
+	order: $val;
+}
+
+@function calculateRem($size) {
+	$remSize: $size / 16px;
+	@return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+	font-size: $size;
+	font-size: calculateRem($size);
+}
+
+@mixin screen-xs {
+	@media (max-width: 767px) {
+		@content;
+	}
+}
+
+@mixin screen-sm {
+	@media (min-width: 768px) and (max-width: 991px) {
+		@content;
+	}
+}
+
+@mixin screen-xs-sm {
+	@media (max-width: 991px) {
+		@content;
+	}
+}
+
+@mixin screen-md {
+	@media (min-width: 992px) and (max-width: 1199px) {
+		@content;
+	}
+}
+
+@mixin screen-lg {
+	@media (min-width: 1200px) {
+		@content;
+	}
+}
+
+@mixin keyframes($animation-name) {
+	@-webkit-keyframes $animation-name {
+		@content;
+	}
+
+	@-moz-keyframes $animation-name {
+		@content;
+	}
+
+	@-ms-keyframes $animation-name {
+		@content;
+	}
+
+	@-o-keyframes $animation-name {
+		@content;
+	}
+
+	@keyframes $animation-name {
+		@content;
+	}
+}
+
+@font-face {
+	font-family: "Roboto Condensed";
+	src: url("../font/roboto/RobotoCondensed-Regular.ttf");
+	font-weight: 700;
+}
+
+
+@mixin animation($str) {
+	-webkit-animation: #{$str};
+	-moz-animation: #{$str};
+	-ms-animation: #{$str};
+	-o-animation: #{$str};
+	animation: #{$str};
+}
+
+@mixin transition($args...) {
+	-webkit-transition: $args;
+	-moz-transition: $args;
+	-ms-transition: $args;
+	-o-transition: $args;
+	transition: $args;
+}
+
+@mixin background-img($url) {
+	background: transparent url(images/landing/#{$url}) center no-repeat;
+}
+
+@mixin calc($property, $expression) {
+	#{$property}: -webkit-calc(#{$expression});
+	#{$property}: calc(#{$expression});
+}
+
+%clearfix {
+	*zoom: 1;
+	&:before, &:after {
+		content: " ";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+%user-select-none {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+%user-select-text {
+	-webkit-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	-o-user-select: text;
+	user-select: text;
+}
+
+$body-color: #fff;
+
+::-moz-selection {
+	background-color: #FFA;
+	color: #000;
+}
+
+::selection {
+	background-color: #FFA;
+	color: #000;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+
+a[href], input[type='submit'], input[type='button'], input[type='reset'], input[type='image'], label[for], select, button, .pointer {
+	@extend %pointer;
+	outline: none !important;
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+	height: 6px;
+}
+
+::-webkit-scrollbar-track-piece {
+	background-color: $body-color;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: shade($body-color, 30%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: #666;
+	border: #444 thin solid;
+}
+
+%align-top {
+	vertical-align: top !important;
+}
+
+%align-middle {
+	vertical-align: middle !important;
+}
+
+%text-overflow {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: 100%;
+}
+
+%transition {
+	@include transition(all 0.2s ease-in-out);
+}
+
+%block {
+	display: block;
+}
+
+%inline {
+	display: inline;
+}
+
+%inline-block {
+	@include inline-block;
+}
+
+.inline-block {
+	@extend %inline-block;
+}
+
+.inline-block-child > * {
+	@extend %inline-block;
+}
+
+%relative {
+	position: relative;
+}
+
+%fixed {
+	position: fixed;
+}
+
+%absolute {
+	position: absolute;
+}
+
+%pointer {
+	cursor: pointer;
+}
+
+%wait {
+	cursor: wait;
+}
+
+%font-condensed {
+	font-family: 'Roboto Condensed','Helvetica';
+}
+
+%full-width {
+	width: 100%;
+}
+
+%full-height {
+	height: 100%;
+}
+
+%overflow-x-hidden {
+	overflow-x: hidden;
+}
+
+.full-height, .ui-mobile [data-role=page] {
+	@extend %full-height;
+}
+
+%overflow-hidden {
+	overflow: hidden;
+}
+
+%overflow-x-hidden {
+	overflow-x: hidden;
+}
+
+%overflow-y-hidden {
+	overflow-y: hidden;
+}
+
+%pre {
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	-ms-word-wrap: break-word;
+	word-wrap: break-word;
+}
+
+%text-right {
+	text-align: right;
+}
+
+%text-left {
+	text-align: left;
+}
+
+%text-center {
+	text-align: center;
+}
+
+%float-right {
+	float: right;
+}
+
+%float-left {
+	float: right;
+}
+
+@function makelongshadow($c1, $c2, $c3, $count) {
+	$val: 0px 0px rgba($c1, $c2, $c3, 1);
+	@for $i from 1 through $count {
+		$val: #{$val}, #{$i}px #{$i}px rgba($c1, $c2, $c3, 1 - $i / $count);
+	}
+	@return $val;
+}
+
+@mixin longshadow($c1, $c2, $c3, $count) {
+	text-shadow: makelongshadow($c1, $c2, $c3, $count);
+}
+
+.pull-left {
+	@extend %float-left;
+}
+
+.pull-right {
+	@extend %float-right;
+}
+
+@include keyframes(rotate) {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+
+@-webkit-keyframes fontfix {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+
+html {
+	overflow: auto;
+	&, body {
+		@extend %full-width;
+		@extend %full-height;
+		margin: 0;
+		padding: 0;
+		font-size: 100%;
+		background: $body-color;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-animation-delay: 0.1s;
+		-webkit-animation-name: fontfix;
+		-webkit-animation-duration: 0.1s;
+		-webkit-animation-iteration-count: 1;
+		-webkit-animation-timing-function: linear;
+	}
+}
+
+@include keyframes(fadeIn) {
+	0% {
+		opacity: 0;
+		margin-top: -5px;
+	}
+	100% {
+		opacity: 1;
+		margin-top: 0px;
+	}
+}
+
+
+@include keyframes(fadeOut) {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+
+[contenteditable='true'] {
+	outline: none;
+}
+
+.ui-bold, .highlight {
+	font-weight: 500;
+}
+
+.highlight {
+	color: #DB5B51;
+}
+
+img {
+	-ms-interpolation-mode: bicubic;
+}
+
+a {
+	text-decoration: none !important;
+}
+
+.ng-hide-add, .ng-hide-remove {
+	display: block !important;
+}
+

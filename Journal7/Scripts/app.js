@@ -1,0 +1,1 @@
+﻿angular.module("journalApp", ['ui.router', 'ngMdIcons']);
